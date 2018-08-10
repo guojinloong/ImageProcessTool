@@ -16,8 +16,8 @@ CDlgRemap::CDlgRemap(CWnd* pParent /*=NULL*/)
 	, m_remapWays(0)
 	, m_colorR(0)
 	, m_colorG(0)
-	, m_colorB(INTER_LINEAR)
-	, m_interWays(0)
+	, m_colorB(0)
+	, m_interWays(INTER_LINEAR)
 {
 
 }

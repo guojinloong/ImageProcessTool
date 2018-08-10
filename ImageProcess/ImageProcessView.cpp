@@ -73,7 +73,7 @@ bool fitWindow = true;	//适合窗口标志
 Mat srcImg,tempImg,dstImg;	//原始图像、缓冲/显示图像、目标图像
 Mat temp[10];	//撤销图像缓存
 CString filePath,fileName,extension;
-//CvvImage image;
+CvvImage image;
 
 // CImageProcessView
 
@@ -184,9 +184,8 @@ void CImageProcessView::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: 在此处为本机数据添加绘制代码
-	//image = pDoc->image;
+	HDC hDC=pDC->GetSafeHdc();
 	IplImage img = tempImg;
-	CvvImage image;
 	image.CopyOf(&img);
 	CRect rt;
 	GetClientRect(&rt);
@@ -230,7 +229,6 @@ void CImageProcessView::OnDraw(CDC* pDC)
 	CSize sizeTotal(imageX,imageY);
 	CRect rect(rectL,rectT,rectR,rectB);
 	SetScrollSizes(MM_TEXT,sizeTotal);
-	HDC hDC=pDC->GetSafeHdc();
 	image.DrawToHDC(hDC,&rect);
 	//撤销保存图像
 	if(ok == true)

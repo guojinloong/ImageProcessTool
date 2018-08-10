@@ -1,19 +1,20 @@
 
 // ImageProcessDoc.h : CImageProcessDoc 类的接口
 //
-#include "CvvImage.h"
 #pragma once
 
 
 class CImageProcessDoc : public CDocument
 {
+//private:
+//	CvvImage img;
 protected: // 仅从序列化创建
 	CImageProcessDoc();
 	DECLARE_DYNCREATE(CImageProcessDoc)
 
 // 特性
 public:
-	CvvImage image;
+	
 // 操作
 public:
 

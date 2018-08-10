@@ -13,7 +13,8 @@
 extern Mat srcImg,tempImg,dstImg,temp[];
 extern CString fileName,extension;
 extern CvvImage image;
-extern int t;	//当前的撤销次数
+extern bool fitWindow;;
+//extern int t;	//当前的撤销次数
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -147,14 +148,15 @@ BOOL CImageProcessDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
 	char *pchar = new char[num];
 	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
-	//image.Load(pchar);
-	//srcImg = image.GetImage();
-	srcImg = imread(pchar);
+	image.Load(pchar);
+	srcImg = image.GetImage();
+	//srcImg = imread(pchar);
 	srcImg.copyTo(dstImg);
 	srcImg.copyTo(tempImg);
-	t = 0;
-	srcImg.copyTo(temp[t]);
-	TRACE(_T("Back:%d\n"),t);
+	//t = 0;
+	srcImg.copyTo(temp[0]);
+	TRACE(_T("Back:0\n"));
+	fitWindow = true;
 	delete []pchar;
 	return TRUE;
 }
