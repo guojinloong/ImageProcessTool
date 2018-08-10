@@ -13,7 +13,7 @@ public:
 	virtual ~CDlgRemap();
 
 // 对话框数据
-	enum { IDD = IDD_DIALOG_AFFINE_REMAP };
+	enum { IDD = IDD_DIALOG_REMAP };
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

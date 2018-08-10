@@ -21,14 +21,19 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	bool m_bChanged;
+	bool m_bProcessed;
+	int m_morphWays;
+	int shape;
+	int m_structElementSize;
+	int m_oldStructElementSize;
 	CComboBox m_elementShape;
+	CSliderCtrl m_slider;
 	virtual BOOL OnInitDialog();
 	afx_msg void OnCbnSelchangeCombo1();
-	int shape;
-	CString m_string;
-	CSliderCtrl m_slider;
 	afx_msg void OnNMCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult);
-	int m_structElementSize;
 	afx_msg void OnDeltaposSpin1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	virtual BOOL ContinueModal();
 };

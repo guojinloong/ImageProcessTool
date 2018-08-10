@@ -1,19 +1,20 @@
 
 // ImageProcessDoc.h : CImageProcessDoc 类的接口
 //
+//#include "CvvImage.h"
 #pragma once
 
 
 class CImageProcessDoc : public CDocument
 {
-//private:
-//	CvvImage img;
 protected: // 仅从序列化创建
 	CImageProcessDoc();
 	DECLARE_DYNCREATE(CImageProcessDoc)
 
 // 特性
 public:
+	CvvImage image;
+	CString str;//文本显示缓冲区
 	
 // 操作
 public:
@@ -47,7 +48,8 @@ protected:
 #endif // SHARED_HANDLERS
 public:
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
-//	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
-//	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
-//	afx_msg void OnFileSave();
+	afx_msg void OnFileSave();
+	afx_msg void OnUpdateFileSave(CCmdUI *pCmdUI);
+	afx_msg void OnFileSaveAs();
+	afx_msg void OnUpdateFileSaveAs(CCmdUI *pCmdUI);
 };

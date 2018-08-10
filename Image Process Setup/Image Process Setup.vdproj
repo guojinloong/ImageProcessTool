@@ -15,56 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_07FB790D9A36E0A0DFD95D284F15D71A"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0822ED7D6808122C67FF137668D64367"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2B6D8E7B29F3422B8254FA6DF8FFDA75"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_56D6AE59A8EF9A53CE5D50382C5391A5"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_65F49D2B429BCB4153D2DBAE43338925"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6F984CCA9A6DD8A0F3C7F87C9FA031D7"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8213AB8C919E0F41E974CF306868FD46"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8A486AC4D36044F0913B95A91476CDE7"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_902F44232D17A89B35F55CD513A8B587"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
+        "MsmKey" = "8:_8D7C35EDF80C442DAFC1ED451B2BD909"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,20 +39,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A5C32C04D943764CF4123D92D77081A0"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C8C0CA4DE6414B689958A608A0D3532C"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9C3C51BA3D5D4FB19799CE76A96520A4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -194,7 +140,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:v4.0 Client"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -202,46 +148,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_07FB790D9A36E0A0DFD95D284F15D71A"
-            {
-            "SourcePath" = "8:MSIMG32.dll"
-            "TargetName" = "8:MSIMG32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0822ED7D6808122C67FF137668D64367"
-            {
-            "SourcePath" = "8:oledlg.dll"
-            "TargetName" = "8:oledlg.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2B6D8E7B29F3422B8254FA6DF8FFDA75"
             {
             "SourcePath" = "8:..\\ImageProcess\\res\\HAS.bmp"
@@ -262,32 +168,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56D6AE59A8EF9A53CE5D50382C5391A5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D7C35EDF80C442DAFC1ED451B2BD909"
             {
-            "SourcePath" = "8:OLEACC.dll"
-            "TargetName" = "8:OLEACC.dll"
+            "SourcePath" = "8:..\\HAS.jpg"
+            "TargetName" = "8:HAS.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_65F49D2B429BCB4153D2DBAE43338925"
-            {
-            "SourcePath" = "8:opencv_core249.dll"
-            "TargetName" = "8:opencv_core249.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
+            "Folder" = "8:_5012B20DB0C44F5E9B32E6300B9FCD54"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -299,87 +185,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F984CCA9A6DD8A0F3C7F87C9FA031D7"
-            {
-            "SourcePath" = "8:gdiplus.dll"
-            "TargetName" = "8:gdiplus.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8213AB8C919E0F41E974CF306868FD46"
-            {
-            "SourcePath" = "8:opencv_imgproc249.dll"
-            "TargetName" = "8:opencv_imgproc249.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A486AC4D36044F0913B95A91476CDE7"
-            {
-            "SourcePath" = "8:IMM32.dll"
-            "TargetName" = "8:IMM32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_902F44232D17A89B35F55CD513A8B587"
-            {
-            "SourcePath" = "8:opencv_highgui249.dll"
-            "TargetName" = "8:opencv_highgui249.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AF27F835FE14844ADB84259A9AF8982"
@@ -400,26 +206,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A5C32C04D943764CF4123D92D77081A0"
-            {
-            "SourcePath" = "8:COMDLG32.dll"
-            "TargetName" = "8:COMDLG32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C4CE168390CC4A5C849B353C13169BB1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8C0CA4DE6414B689958A608A0D3532C"
@@ -543,7 +329,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Image Process"
         "ProductCode" = "8:{932E3E4C-5418-4264-A456-A7CBA205B036}"
-        "PackageCode" = "8:{13F200BE-F15A-49EC-B74A-05293A4FDE55}"
+        "PackageCode" = "8:{097E8EA0-ACD9-42FF-AB3A-2806371EB3AE}"
         "UpgradeCode" = "8:{BC428614-55FC-4708-AA70-FA2253F39F25}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

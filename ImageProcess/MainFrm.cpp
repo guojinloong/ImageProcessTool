@@ -11,6 +11,10 @@
 #define new DEBUG_NEW
 #endif
 
+extern Mat srcImg,tempImg,dstImg,temp[];
+extern CString filePath,fileName,extension;
+extern bool saveFlag;
+
 // CMainFrame
 
 IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
@@ -23,9 +27,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
-//	ON_COMMAND(ID_FILE_OPEN, &CMainFrame::OnFileOpen)
-//ON_UPDATE_COMMAND_UI(ID_TRANSFORM_EQUALIZEHIST, &CMainFrame::OnUpdateTransformEqualizehist)
-//ON_COMMAND(ID_EDIT_UNDO, &CMainFrame::OnEditUndo)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -233,3 +235,24 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 //	return FALSE;
 //	return CFrameWndEx::OnCreateClient(lpcs, pContext);
 //}
+
+
+void CMainFrame::OnClose()
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	INT_PTR nRes = NULL;
+	if(saveFlag == true)	nRes = MessageBox(_T("退出前是否保存文件？"),fileName,MB_YESNOCANCEL|MB_ICONQUESTION);//AfxGetMainWnd()->m_hWnd,
+	if(nRes == IDYES)
+	{
+		CStringA file(filePath.GetBuffer(0));
+		filePath.ReleaseBuffer();
+		string path=file.GetBuffer(0);
+		file.ReleaseBuffer();
+		if(!dstImg.data)	dstImg = srcImg.clone();
+		imwrite(path,dstImg);
+		TRACE(_T("Save Success!\n"));
+	}
+	else if(nRes == IDCANCEL)	return;
+
+	CFrameWndEx::OnClose();
+}

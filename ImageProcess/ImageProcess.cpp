@@ -16,8 +16,10 @@
 #endif
 extern Mat srcImg,tempImg,dstImg,temp[10];
 extern CString filePath,fileName,extension;
+//extern CvvImage image;
 //extern int t,tMax;
-//extern bool ok,fitWindow;;
+extern bool ok,fitWindow,saveFlag;
+
 // CImageProcessApp
 
 BEGIN_MESSAGE_MAP(CImageProcessApp, CWinAppEx)
@@ -74,7 +76,9 @@ BOOL CImageProcessApp::InitInstance()
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinAppEx::InitInstance();
+	
 
+	Gdiplus::GdiplusStartup(&m_gdiplusToken,&m_gdiplusStartupInput,NULL);//调用此函数启用GDI+功能
 
 	// 初始化 OLE 库
 	if (!AfxOleInit())
@@ -152,7 +156,8 @@ int CImageProcessApp::ExitInstance()
 {
 	//TODO: 处理可能已添加的附加资源
 	AfxOleTerm(FALSE);
-	destroyAllWindows();
+	Gdiplus::GdiplusShutdown(m_gdiplusToken);//使用完成调用此函数关闭GDI+库
+	//destroyAllWindows();
 	srcImg.release();
 	tempImg.release();
 	dstImg.release();
@@ -231,10 +236,22 @@ int CImageProcessApp::Run()
 void CImageProcessApp::OnFileOpen()
 {
 	// TODO: 在此添加命令处理程序代码
-	TCHAR szFilter[] = _T("JPEG文件(*.jpg;*,jpe;*.jpeg;*jp2)|*.jpg;*,jpe;*.jpeg;*jp2|PNG文件(*.png)|*.png|ICON图标(*.icon;*.ico)|*.icon;*.ico|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|Windows视频(*.avi)|*.avi|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm|所有文件(*.*)|*.*||"); 
+	TCHAR szFilter[] = _T("JPEG文件(*.jpg;*,jpe;*.jpeg;*jp2)|*.jpg;*,jpe;*.jpeg;*jp2|PNG文件(*.png)|*.png|ICON图标(*.icon;*.ico)|*.icon;*.ico|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|Windows视频(*.avi)|*.avi|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm|XML文件(*.xml)|*.xml|YAML文件(*.yaml;*.yml)|*.yaml;*.yml|TXT文件(*.txt)|*.txt|所有文件(*.*)|*.*||"); 
 	CFileDialog fileDlg(TRUE,extension,fileName,0,szFilter);
 	if(fileDlg.DoModal() == IDOK)
 	{
+		INT_PTR nRes = NULL;
+		if(saveFlag == true)	nRes = MessageBox(AfxGetMainWnd()->m_hWnd,_T("是否保存修改过的文件？"),fileName,MB_YESNOCANCEL|MB_ICONQUESTION);//AfxGetMainWnd()->m_hWnd,
+		if(nRes == IDYES)
+		{
+			CStringA file(filePath.GetBuffer(0));
+			filePath.ReleaseBuffer();
+			string path=file.GetBuffer(0);
+			file.ReleaseBuffer();
+			imwrite(path,dstImg);
+			TRACE(_T("Save Success!\n"));
+		}
+		else if(nRes == IDCANCEL)	return ;
 		filePath = fileDlg.GetPathName();
 		fileName = fileDlg.GetFileTitle();
 		extension = fileDlg.GetFileExt();

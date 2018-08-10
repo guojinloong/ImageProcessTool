@@ -68,7 +68,6 @@ void CDlgRemap::OnEnChangeEdit1()
 	UpdateData(true);
 	if(m_colorR<0)	m_colorR = 0;
 	else if(m_colorR>255)	m_colorR = 255;
-	else return;
 	UpdateData(false);
 }
 
@@ -84,7 +83,6 @@ void CDlgRemap::OnEnChangeEdit2()
 	UpdateData(true);
 	if(m_colorG<0)	m_colorG = 0;
 	else if(m_colorG>255)	m_colorG = 255;
-	else return;
 	UpdateData(false);
 }
 
@@ -100,7 +98,6 @@ void CDlgRemap::OnEnChangeEdit3()
 	UpdateData(true);
 	if(m_colorB<0)	m_colorB = 0;
 	else if(m_colorB>255)	m_colorB = 255;
-	else return;
 	UpdateData(false);
 }
 

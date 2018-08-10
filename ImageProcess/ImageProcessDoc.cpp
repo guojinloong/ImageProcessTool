@@ -11,10 +11,10 @@
 #include "ImageProcessDoc.h"
 #include <propkey.h>
 extern Mat srcImg,tempImg,dstImg,temp[];
-extern CString fileName,extension;
-extern CvvImage image;
-extern bool fitWindow;;
-//extern int t;	//当前的撤销次数
+extern CString filePath,fileName,extension;
+//extern CString strings;
+extern int t,tMax;
+extern bool fitWindow,saveFlag;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,7 +26,10 @@ IMPLEMENT_DYNCREATE(CImageProcessDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CImageProcessDoc, CDocument)
 
-//	ON_COMMAND(ID_FILE_SAVE, &CImageProcessDoc::OnFileSave)
+	ON_COMMAND(ID_FILE_SAVE, &CImageProcessDoc::OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, &CImageProcessDoc::OnUpdateFileSave)
+	ON_COMMAND(ID_FILE_SAVE_AS, &CImageProcessDoc::OnFileSaveAs)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_AS, &CImageProcessDoc::OnUpdateFileSaveAs)
 END_MESSAGE_MAP()
 
 
@@ -145,33 +148,89 @@ BOOL CImageProcessDoc::OnOpenDocument(LPCTSTR lpszPathName)
 
 	// TODO:  在此添加您专用的创建代码
 	
-	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
-	char *pchar = new char[num];
-	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
-	image.Load(pchar);
-	srcImg = image.GetImage();
-	//srcImg = imread(pchar);
-	srcImg.copyTo(dstImg);
-	srcImg.copyTo(tempImg);
-	//t = 0;
-	srcImg.copyTo(temp[0]);
-	TRACE(_T("Back:0\n"));
+	if((extension == _T("xml")||(extension == _T("yaml"))||(extension == _T("yml"))||(extension == _T("txt"))))
+	{
+		CFile file;
+		int hResult = file.Open(lpszPathName,CFile::modeReadWrite);
+		if(hResult == 0)	AfxMessageBox(_T("FALSE!"));
+		file.Read(str.GetBuffer((UINT)(file.GetLength())),(UINT)(file.GetLength()));
+		//str.Format(_T("%d"),str.GetLength());
+		file.Close();
+		srcImg.release();
+	}
+	else
+	{
+		int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
+		char *pchar = new char[num];
+		WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
+		image.Load(pchar);
+		Mat img = image.GetImage();
+		img.copyTo(srcImg);
+		img.copyTo(tempImg);
+		img.copyTo(temp[0]);
+		img.release();
+		TRACE(_T("Back:0\n"));
+		delete []pchar;
+	}
+	t = 0;
+	tMax = 0;
 	fitWindow = true;
-	delete []pchar;
+	saveFlag = false;
 	return TRUE;
 }
 
 
-//BOOL CImageProcessDoc::OnSaveDocument(LPCTSTR lpszPathName)
-//{
-//	// TODO: 在此添加专用代码和/或调用基类
-//	
-//	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
-//	char *pchar = new char[num];
-//	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
-//	if(!dstImg.data)	dstImg = srcImg.clone();
-//	IplImage img = dstImg;
-//	image.CopyOf(&img);
-//	image.Save(pchar);
-//	return CDocument::OnSaveDocument(lpszPathName);
-//}
+void CImageProcessDoc::OnFileSave()
+{
+	// TODO: 在此添加命令处理程序代码
+	INT_PTR nRes = MessageBox(AfxGetMainWnd()->m_hWnd,_T("   确定保存？"),_T("提示"),MB_OKCANCEL|MB_ICONQUESTION);
+	if(nRes == IDOK)
+	{
+		CStringA file(filePath.GetBuffer(0));
+		filePath.ReleaseBuffer();
+		string path=file.GetBuffer(0);
+		file.ReleaseBuffer();
+		if(!dstImg.data)	dstImg = srcImg.clone();
+		imwrite(path,dstImg);
+		TRACE(_T("Save Success!\n"));
+		saveFlag = false;
+	}
+}
+
+
+void CImageProcessDoc::OnUpdateFileSave(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	if((srcImg.data)&&(saveFlag == true))	pCmdUI->Enable(true);
+	else pCmdUI->Enable(false);
+}
+
+
+void CImageProcessDoc::OnFileSaveAs()
+{
+	// TODO: 在此添加命令处理程序代码
+	TCHAR szFilter[] = _T("JPEG文件(*.jpg;*,jpe;*.jpeg;*jp2)|*.jpg;*,jpe;*.jpeg;*jp2|PNG文件(*.png)|*.png|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm||"); 
+	CFileDialog fileDlg(FALSE,extension,fileName,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT,szFilter);
+	if(fileDlg.DoModal() == IDOK)
+	{
+		filePath = fileDlg.GetPathName();
+		fileName = fileDlg.GetFileTitle();
+		extension = fileDlg.GetFileExt();
+		CStringA file(filePath.GetBuffer(0));
+		filePath.ReleaseBuffer();
+		string path=file.GetBuffer(0);
+		file.ReleaseBuffer();
+		if(!dstImg.data)	dstImg = srcImg.clone();
+		imwrite(path,dstImg);
+		TRACE(_T("Save As Success!\n"));
+		saveFlag = false;
+	}
+}
+
+
+void CImageProcessDoc::OnUpdateFileSaveAs(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	if(srcImg.data)	pCmdUI->Enable(true);
+	else pCmdUI->Enable(false);
+}

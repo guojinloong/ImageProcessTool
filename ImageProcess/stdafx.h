@@ -38,16 +38,13 @@
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
 #include "CvvImage.h"
+#include <time.h>
 #include <opencv2\opencv.hpp>
 #include <opencv2\highgui\highgui.hpp>
 #include <opencv2\imgproc\imgproc.hpp>
+#include <GdiPlus.h>
+#pragma comment(lib,"Gdiplus.lib")
 using namespace cv;
-
-
-
-
-
-
 
 
 #ifdef _UNICODE

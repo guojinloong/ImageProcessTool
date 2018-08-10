@@ -50,6 +50,7 @@ protected:
 public:
 
 //	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	afx_msg void OnClose();
 };
 
 

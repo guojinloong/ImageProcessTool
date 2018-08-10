@@ -16,9 +16,11 @@
 
 class CImageProcessApp : public CWinAppEx
 {
+private:
+	Gdiplus::GdiplusStartupInput m_gdiplusStartupInput;
+	ULONG_PTR m_gdiplusToken;
 public:
 	CImageProcessApp();
-
 
 // ÖØÐ´
 public:

@@ -6,6 +6,7 @@
 #include "DlgThresholdAdaptive.h"
 #include "afxdialogex.h"
 
+extern Mat srcImg,tempImg,dstImg;
 
 // CDlgThresholdAdaptive 对话框
 
@@ -15,8 +16,8 @@ CDlgThresholdAdaptive::CDlgThresholdAdaptive(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDlgThresholdAdaptive::IDD, pParent)
 	, m_blockSize(1)
 	, m_maxValue(255)
-	, m_type1(ADAPTIVE_THRESH_MEAN_C)
-	, m_type2(THRESH_BINARY)
+	, m_adaptiveMethod(ADAPTIVE_THRESH_MEAN_C)
+	, m_thresholdType(THRESH_BINARY)
 {
 
 }
@@ -28,8 +29,8 @@ CDlgThresholdAdaptive::~CDlgThresholdAdaptive()
 void CDlgThresholdAdaptive::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_COMBO1, m_adaptiveMethod);
-	DDX_Control(pDX, IDC_COMBO2, m_thresholdType);
+	DDX_Control(pDX, IDC_COMBO1, m_comboBox1);
+	DDX_Control(pDX, IDC_COMBO2, m_comboBox2);
 	DDX_Text(pDX, IDC_EDIT1, m_blockSize);
 	DDV_MinMaxInt(pDX, m_blockSize, 1, 20);
 	DDX_Text(pDX, IDC_EDIT2, m_maxValue);
@@ -46,36 +47,109 @@ BEGIN_MESSAGE_MAP(CDlgThresholdAdaptive, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT2, &CDlgThresholdAdaptive::OnEnChangeEdit2)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER1, &CDlgThresholdAdaptive::OnNMCustomdrawSlider1)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER2, &CDlgThresholdAdaptive::OnNMCustomdrawSlider2)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
 // CDlgThresholdAdaptive 消息处理程序
 
 
+BOOL CDlgThresholdAdaptive::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// TODO:  在此添加额外的初始化
+	m_comboBox1.AddString(_T("MEAN_C"));
+	m_comboBox1.AddString(_T("GAUSSIAN_C"));
+	m_comboBox1.SetCurSel(0);
+	m_comboBox2.AddString(_T("BINARY"));
+	m_comboBox2.AddString(_T("BINARY_INV"));
+	//m_thresholdType.AddString(_T("TRUNC"));
+	//m_thresholdType.AddString(_T("TOZERO"));
+	//m_thresholdType.AddString(_T("TOZERO_INV"));
+	m_comboBox2.SetCurSel(0);
+
+	m_slider1.SetRange(1,20);
+	m_slider2.SetRange(1,255);
+	m_slider1.SetTicFreq(1);
+	m_slider2.SetTicFreq(1);
+	m_slider1.SetPos(m_blockSize);
+	m_slider2.SetPos(m_maxValue);
+
+	SetTimer(1,200,NULL);
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// 异常: OCX 属性页应返回 FALSE
+}
+
+
+void CDlgThresholdAdaptive::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if(m_oldBlockSize == m_blockSize)
+	{
+		if(m_bChanged1 == true)	m_bProcessed = false;
+		m_bChanged1 = false;
+	}
+	else m_bChanged1 = true;
+	m_oldBlockSize = m_blockSize;
+
+	if(m_oldMaxValue == m_maxValue)
+	{
+		if(m_bChanged2 == true)	m_bProcessed = false;
+		m_bChanged2 = false;
+	}
+	else m_bChanged2 = true;
+	m_oldMaxValue = m_maxValue;
+
+	CDialogEx::OnTimer(nIDEvent);
+}
+
+
+BOOL CDlgThresholdAdaptive::ContinueModal()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	if(m_bProcessed == false)
+	{
+		Mat grayImg;
+		cvtColor(srcImg,grayImg,COLOR_BGR2GRAY);
+		//imshow("【灰度图像】",grayImg);
+		adaptiveThreshold(grayImg,tempImg,m_maxValue,m_adaptiveMethod,m_thresholdType,m_blockSize*2+1,0);
+		//imshow("【自适应阈值化】",tempImg);
+		grayImg.release();
+		AfxGetMainWnd()->Invalidate(FALSE);
+		AfxGetMainWnd()->UpdateWindow();
+		m_bProcessed = true;
+	}
+
+	return CDialogEx::ContinueModal();
+}
+
+
 void CDlgThresholdAdaptive::OnCbnSelchangeCombo1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	int sel = m_adaptiveMethod.GetCurSel();
+	int sel = m_comboBox1.GetCurSel();
 	CString string;
-	m_adaptiveMethod.GetLBText(sel,string);
-	if(string = _T("BINARY"))	m_type2 = ADAPTIVE_THRESH_MEAN_C;
-	else if(string = _T("BINARY_INV"))	m_type2 = ADAPTIVE_THRESH_GAUSSIAN_C;
+	m_comboBox1.GetLBText(sel,string);
+	if(string = _T("BINARY"))	m_thresholdType = ADAPTIVE_THRESH_MEAN_C;
+	else if(string = _T("BINARY_INV"))	m_thresholdType = ADAPTIVE_THRESH_GAUSSIAN_C;
+	m_bProcessed = false;
 }
 
 
 void CDlgThresholdAdaptive::OnCbnSelchangeCombo2()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	int sel = m_thresholdType.GetCurSel();
+	int sel = m_comboBox2.GetCurSel();
 	CString m_string;
-	m_thresholdType.GetLBText(sel,m_string);
-	if(m_string = _T("BINARY"))	m_type2 = THRESH_BINARY;
-	else if(m_string = _T("BINARY_INV"))	m_type2 = THRESH_BINARY_INV;
-	//else if(m_string = _T("TRUNC"))	m_type2 = THRESH_TRUNC;
-	//else if(m_string = _T("TOZERO"))	m_type2 = THRESH_TOZERO;
-	//else if(m_string = _T("TOZERO_INV"))	m_type2 = THRESH_TOZERO_INV;
-	//else m_type2 = MORPH_RECT;
-
+	m_comboBox2.GetLBText(sel,m_string);
+	if(m_string = _T("BINARY"))	m_thresholdType = THRESH_BINARY;
+	else if(m_string = _T("BINARY_INV"))	m_thresholdType = THRESH_BINARY_INV;
+	//else if(m_string = _T("TRUNC"))	m_thresholdType = THRESH_TRUNC;
+	//else if(m_string = _T("TOZERO"))	m_thresholdType = THRESH_TOZERO;
+	//else if(m_string = _T("TOZERO_INV"))	m_thresholdType = THRESH_TOZERO_INV;
+	//else m_thresholdType = MORPH_RECT;
+	m_bProcessed = false;
 }
 
 
@@ -126,30 +200,4 @@ void CDlgThresholdAdaptive::OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResul
 	m_maxValue = m_slider2.GetPos();
 	UpdateData(false);
 	*pResult = 0;
-}
-
-
-BOOL CDlgThresholdAdaptive::OnInitDialog()
-{
-	CDialogEx::OnInitDialog();
-
-	// TODO:  在此添加额外的初始化
-	m_adaptiveMethod.AddString(_T("MEAN_C"));
-	m_adaptiveMethod.AddString(_T("GAUSSIAN_C"));
-	m_adaptiveMethod.SetCurSel(0);
-	m_thresholdType.AddString(_T("BINARY"));
-	m_thresholdType.AddString(_T("BINARY_INV"));
-	//m_thresholdType.AddString(_T("TRUNC"));
-	//m_thresholdType.AddString(_T("TOZERO"));
-	//m_thresholdType.AddString(_T("TOZERO_INV"));
-	m_thresholdType.SetCurSel(0);
-
-	m_slider1.SetRange(1,20);
-	m_slider2.SetRange(1,255);
-	m_slider1.SetTicFreq(1);
-	m_slider2.SetTicFreq(1);
-	m_slider1.SetPos(m_blockSize);
-	m_slider2.SetPos(m_maxValue);
-	return TRUE;  // return TRUE unless you set the focus to a control
-	// 异常: OCX 属性页应返回 FALSE
 }

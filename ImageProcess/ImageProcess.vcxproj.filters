@@ -115,13 +115,31 @@
     <ClInclude Include="DlgAffineWarp.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DlgPicture.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="DlgAffineWarpRotation.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="DlgRemap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgFloodFill.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgResize.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgDefog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgFindContours.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgConvexHull.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPoly.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgSet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgProperty.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,13 +198,31 @@
     <ClCompile Include="DlgAffineWarp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DlgPicture.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="DlgAffineWarpRotation.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="DlgRemap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgFloodFill.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgResize.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgDefog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgFindContours.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgConvexHull.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPoly.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgSet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgProperty.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
