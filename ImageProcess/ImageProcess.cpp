@@ -14,7 +14,8 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
+extern Mat srcImg,tempImg,dstImg;
+extern CString fileName,extension;
 
 // CImageProcessApp
 
@@ -22,7 +23,8 @@ BEGIN_MESSAGE_MAP(CImageProcessApp, CWinAppEx)
 	ON_COMMAND(ID_APP_ABOUT, &CImageProcessApp::OnAppAbout)
 	// 基于文件的标准文档命令
 	ON_COMMAND(ID_FILE_NEW, &CWinAppEx::OnFileNew)
-	ON_COMMAND(ID_FILE_OPEN, &CWinAppEx::OnFileOpen)
+	ON_COMMAND(ID_FILE_OPEN, &CImageProcessApp::OnFileOpen)
+//	ON_COMMAND(ID_FILE_SAVE, &CImageProcessApp::OnFileSave)
 	// 标准打印设置命令
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinAppEx::OnFilePrintSetup)
 END_MESSAGE_MAP()
@@ -149,7 +151,10 @@ int CImageProcessApp::ExitInstance()
 {
 	//TODO: 处理可能已添加的附加资源
 	AfxOleTerm(FALSE);
-
+	destroyAllWindows();
+	srcImg.release();
+	tempImg.release();
+	dstImg.release();
 	return CWinAppEx::ExitInstance();
 }
 
@@ -216,3 +221,39 @@ void CImageProcessApp::SaveCustomState()
 
 
 
+
+
+void CImageProcessApp::OnFileOpen()
+{
+	// TODO: 在此添加命令处理程序代码
+	TCHAR szFilter[] = _T("JPEG文件(*.jpg;*,jpe;*.jpeg;*jp2)|*.jpg;*,jpe;*.jpeg;*jp2|PNG文件(*.png)|*.png|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm||"); 
+	CFileDialog fileDlg(TRUE,_T("jpg"),NULL,0,szFilter);
+	CString filePath;
+	if(fileDlg.DoModal() == IDOK)
+	{
+		filePath = fileDlg.GetPathName();
+		fileName = fileDlg.GetFileTitle();
+		extension = fileDlg.GetFileExt();
+		OpenDocumentFile(filePath);
+	}
+}
+
+//void CImageProcessApp::OnFileSave()
+//{
+//	// TODO: 在此添加命令处理程序代码
+//	if(srcImg.data)
+//	{
+//		TCHAR szFilter[] = _T("JPEG文件(*.jpeg;*.jpg;*,jpe;*jp2)|*.jpeg;*.jpg;*,jpe;*jp2|PNG文件(*.png)|*.png|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm||"); 
+//		CFileDialog fileDlg(FALSE,extension,fileName,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT,szFilter);
+//		CString filePath;
+//		if(fileDlg.DoModal() == IDOK)
+//		{
+//			filePath = fileDlg.GetPathName();
+//			SaveDocumentFile(filePath);
+//		}
+//	}
+//	else
+//	{
+//		MessageBox(_T("没有载入图片！"),_T("警告"),MB_ICONWARNING);
+//	}
+//}

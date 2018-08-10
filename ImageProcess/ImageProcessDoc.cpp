@@ -1,7 +1,6 @@
 
 // ImageProcessDoc.cpp : CImageProcessDoc 类的实现
 //
-
 #include "stdafx.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
@@ -10,8 +9,10 @@
 #endif
 
 #include "ImageProcessDoc.h"
-
 #include <propkey.h>
+extern Mat srcImg,tempImg,dstImg;
+extern CString fileName,extension;
+extern CvvImage image;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,6 +23,8 @@
 IMPLEMENT_DYNCREATE(CImageProcessDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CImageProcessDoc, CDocument)
+
+//	ON_COMMAND(ID_FILE_SAVE, &CImageProcessDoc::OnFileSave)
 END_MESSAGE_MAP()
 
 
@@ -37,16 +40,16 @@ CImageProcessDoc::~CImageProcessDoc()
 {
 }
 
-BOOL CImageProcessDoc::OnNewDocument()
-{
-	if (!CDocument::OnNewDocument())
-		return FALSE;
-
-	// TODO: 在此添加重新初始化代码
-	// (SDI 文档将重用该文档)
-
-	return TRUE;
-}
+//BOOL CImageProcessDoc::OnNewDocument()
+//{
+//	if (!CDocument::OnNewDocument())
+//		return FALSE;
+//
+//	// TODO: 在此添加重新初始化代码
+//	// (SDI 文档将重用该文档)
+//
+//	return TRUE;
+//}
 
 
 
@@ -133,5 +136,34 @@ void CImageProcessDoc::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
+BOOL CImageProcessDoc::OnOpenDocument(LPCTSTR lpszPathName)
+{
+	if (!CDocument::OnOpenDocument(lpszPathName))
+		return FALSE;
 
-// CImageProcessDoc 命令
+	// TODO:  在此添加您专用的创建代码
+	
+	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
+	char *pchar = new char[num];
+	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
+	DocImage.Load(pchar);
+	srcImg = DocImage.GetImage();
+	srcImg.copyTo(tempImg);
+	delete []pchar;
+	return TRUE;
+}
+
+
+BOOL CImageProcessDoc::OnSaveDocument(LPCTSTR lpszPathName)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	
+	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
+	char *pchar = new char[num];
+	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
+	if(!dstImg.data)	dstImg = srcImg.clone();
+	IplImage img = dstImg;
+	image.CopyOf(&img);
+	image.Save(pchar);
+	return CDocument::OnSaveDocument(lpszPathName);
+}

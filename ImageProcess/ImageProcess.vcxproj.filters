@@ -35,6 +35,9 @@
     <None Include="res\Toolbar256.bmp">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\Jalon.jpg">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageProcess.h">
@@ -58,6 +61,9 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CvvImage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageProcess.cpp">
@@ -73,6 +79,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ImageProcessView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CvvImage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

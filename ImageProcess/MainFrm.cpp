@@ -23,6 +23,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
+//	ON_COMMAND(ID_FILE_OPEN, &CMainFrame::OnFileOpen)
+//ON_UPDATE_COMMAND_UI(ID_TRANSFORM_EQUALIZEHIST, &CMainFrame::OnUpdateTransformEqualizehist)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -219,4 +221,3 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 
 	return TRUE;
 }
-
