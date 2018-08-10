@@ -14,9 +14,10 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-extern Mat srcImg,tempImg,dstImg;
-extern CString fileName,extension;
-
+extern Mat srcImg,tempImg,dstImg,temp[10];
+extern CString filePath,fileName,extension;
+extern int t,tMax;
+extern bool ok;
 // CImageProcessApp
 
 BEGIN_MESSAGE_MAP(CImageProcessApp, CWinAppEx)
@@ -219,8 +220,12 @@ void CImageProcessApp::SaveCustomState()
 
 // CImageProcessApp 消息处理程序
 
+int CImageProcessApp::Run()
+{
+	// TODO: 在此添加专用代码和/或调用基类
 
-
+	return CWinAppEx::Run();
+}
 
 
 void CImageProcessApp::OnFileOpen()
@@ -228,32 +233,12 @@ void CImageProcessApp::OnFileOpen()
 	// TODO: 在此添加命令处理程序代码
 	TCHAR szFilter[] = _T("JPEG文件(*.jpg;*,jpe;*.jpeg;*jp2)|*.jpg;*,jpe;*.jpeg;*jp2|PNG文件(*.png)|*.png|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm||"); 
 	CFileDialog fileDlg(TRUE,_T("jpg"),NULL,0,szFilter);
-	CString filePath;
 	if(fileDlg.DoModal() == IDOK)
 	{
 		filePath = fileDlg.GetPathName();
 		fileName = fileDlg.GetFileTitle();
 		extension = fileDlg.GetFileExt();
 		OpenDocumentFile(filePath);
+		TRACE(_T("Open Success!\n"));
 	}
 }
-
-//void CImageProcessApp::OnFileSave()
-//{
-//	// TODO: 在此添加命令处理程序代码
-//	if(srcImg.data)
-//	{
-//		TCHAR szFilter[] = _T("JPEG文件(*.jpeg;*.jpg;*,jpe;*jp2)|*.jpeg;*.jpg;*,jpe;*jp2|PNG文件(*.png)|*.png|Windows位图(*.bmp;*.dib)|*.bmp;*.dib|TIFF文件(*.tiff;*.tif)|*.tiff;*.tif|Sun Rasters光栅文件(*.sr;*.ras)|*.sr;*.ras|便携文件格式(*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm||"); 
-//		CFileDialog fileDlg(FALSE,extension,fileName,OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT,szFilter);
-//		CString filePath;
-//		if(fileDlg.DoModal() == IDOK)
-//		{
-//			filePath = fileDlg.GetPathName();
-//			SaveDocumentFile(filePath);
-//		}
-//	}
-//	else
-//	{
-//		MessageBox(_T("没有载入图片！"),_T("警告"),MB_ICONWARNING);
-//	}
-//}

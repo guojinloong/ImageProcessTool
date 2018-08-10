@@ -38,6 +38,24 @@
     <None Include="res\Jalon.jpg">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="F:\back-arrow-7.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bitmap2.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="HAS~1.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="HAS.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\HAS.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\HAS.bmp">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ImageProcess.h">
@@ -64,6 +82,48 @@
     <ClInclude Include="CvvImage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DlgFilter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgMorphology.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgThreshold.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgThresholdAdaptive.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEdgeCanny.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEdgeSobel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEdgeLaplacian.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgEdgeScharr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgHoughLines.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgHoughLinesP.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgAffineWarp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPicture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgAffineWarpRotation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgRemap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageProcess.cpp">
@@ -82,6 +142,51 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CvvImage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgFilter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgMorphology.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgThresholdAdaptive.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgThreshold.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEdgeCanny.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEdgeSobel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEdgeLaplacian.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgEdgeScharr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgHoughLines.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgHoughLinesP.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="left.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgAffineWarp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPicture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgAffineWarpRotation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgRemap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

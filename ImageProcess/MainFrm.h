@@ -2,13 +2,14 @@
 // MainFrm.h : CMainFrame 类的接口
 //
 
-//#include "CvvImage.h"
+//#include "MDIClient.h"
 #pragma once
 
 class CMainFrame : public CFrameWndEx
 {
+protected:
+	//CMDIClient m_wndMDIClient;
 public:
-	//CvvImage image;
 	
 protected: // 仅从序列化创建
 	CMainFrame();
@@ -47,7 +48,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-//	afx_msg void OnFileOpen();
+
+//	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 };
 
 

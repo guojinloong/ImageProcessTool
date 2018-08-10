@@ -1,6 +1,7 @@
 
 // ImageProcessDoc.h : CImageProcessDoc 类的接口
 //
+#include "CvvImage.h"
 #pragma once
 
 
@@ -12,7 +13,7 @@ protected: // 仅从序列化创建
 
 // 特性
 public:
-	CvvImage DocImage;
+	CvvImage image;
 // 操作
 public:
 
@@ -46,6 +47,6 @@ protected:
 public:
 	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
 //	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
-	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
+//	virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
 //	afx_msg void OnFileSave();
 };

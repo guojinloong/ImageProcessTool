@@ -25,6 +25,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
 //	ON_COMMAND(ID_FILE_OPEN, &CMainFrame::OnFileOpen)
 //ON_UPDATE_COMMAND_UI(ID_TRANSFORM_EQUALIZEHIST, &CMainFrame::OnUpdateTransformEqualizehist)
+//ON_COMMAND(ID_EDIT_UNDO, &CMainFrame::OnEditUndo)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -70,7 +71,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建工具栏\n");
 		return -1;      // 未能创建
 	}
-
+	//SetBitmap(IDB_UNDO);
 	CString strToolBarName;
 	bNameValid = strToolBarName.LoadString(IDS_TOOLBAR_STANDARD);
 	ASSERT(bNameValid);
@@ -97,8 +98,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockPane(&m_wndMenuBar);
 	DockPane(&m_wndToolBar);
-
-
+	
 	// 启用 Visual Studio 2005 样式停靠窗口行为
 	CDockingManager::SetDockingMode(DT_SMART);
 	// 启用 Visual Studio 2005 样式停靠窗口自动隐藏行为
@@ -121,21 +121,21 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// 启用菜单个性化(最近使用的命令)
 	// TODO: 定义您自己的基本命令，确保每个下拉菜单至少有一个基本命令。
-	CList<UINT, UINT> lstBasicCommands;
+	//CList<UINT, UINT> lstBasicCommands;
 
-	lstBasicCommands.AddTail(ID_FILE_NEW);
-	lstBasicCommands.AddTail(ID_FILE_OPEN);
-	lstBasicCommands.AddTail(ID_FILE_SAVE);
-	lstBasicCommands.AddTail(ID_FILE_PRINT);
-	lstBasicCommands.AddTail(ID_APP_EXIT);
-	lstBasicCommands.AddTail(ID_EDIT_CUT);
-	lstBasicCommands.AddTail(ID_EDIT_PASTE);
-	lstBasicCommands.AddTail(ID_EDIT_UNDO);
-	lstBasicCommands.AddTail(ID_APP_ABOUT);
-	lstBasicCommands.AddTail(ID_VIEW_STATUS_BAR);
-	lstBasicCommands.AddTail(ID_VIEW_TOOLBAR);
+	//lstBasicCommands.AddTail(ID_FILE_NEW);
+	//lstBasicCommands.AddTail(ID_FILE_OPEN);
+	//lstBasicCommands.AddTail(ID_FILE_SAVE);
+	//lstBasicCommands.AddTail(ID_FILE_PRINT);
+	//lstBasicCommands.AddTail(ID_APP_EXIT);
+	//lstBasicCommands.AddTail(ID_EDIT_CUT);
+	//lstBasicCommands.AddTail(ID_EDIT_PASTE);
+	//lstBasicCommands.AddTail(ID_EDIT_UNDO);
+	//lstBasicCommands.AddTail(ID_APP_ABOUT);
+	//lstBasicCommands.AddTail(ID_VIEW_STATUS_BAR);
+	//lstBasicCommands.AddTail(ID_VIEW_TOOLBAR);
 
-	CMFCToolBar::SetBasicCommands(lstBasicCommands);
+	//CMFCToolBar::SetBasicCommands(lstBasicCommands);
 
 	return 0;
 }
@@ -218,6 +218,18 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 		}
 	}
-
 	return TRUE;
 }
+
+//BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+//{
+//	// TODO: 在此添加专用代码和/或调用基类
+//	if ( CFrameWndEx::OnCreateClient(lpcs, pContext) )
+//	{
+//		m_wndMDIClient.SubclassWindow(m_wndMDIClient);
+//		return TRUE;
+//	}
+//	else
+//	return FALSE;
+//	return CFrameWndEx::OnCreateClient(lpcs, pContext);
+//}

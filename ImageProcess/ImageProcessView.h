@@ -1,11 +1,14 @@
 
 // ImageProcessView.h : CImageProcessView 类的接口
 //
-
+//#include "DlgFilter.h"
+//#include "DlgMorphology.h"
 #pragma once
 
 class CImageProcessView : public CScrollView
 {
+//private:
+//	CDlgFilter *m_pDlgFilter;
 protected: // 仅从序列化创建
 	CImageProcessView();
 	DECLARE_DYNCREATE(CImageProcessView)
@@ -95,6 +98,23 @@ public:
 	afx_msg void OnTransformEqualizehist();
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnFileSave();
+	afx_msg void OnEditUndo();
+	afx_msg void OnEditRedo();
+	afx_msg void OnUpdateTransformHoughHoughlines(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformHoughHoughlinesp(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformHoughHoughcircles(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformAffineWarp(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformAffineRotation(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformRemap(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateTransformEqualizehist(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateEditUndo(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateEditRedo(CCmdUI *pCmdUI);
+	afx_msg void OnProcessFloodfill();
+	afx_msg void OnUpdateProcessFloodfill(CCmdUI *pCmdUI);
+	afx_msg void OnFileSaveAs();
+	afx_msg void OnUpdateFileSave(CCmdUI *pCmdUI);
+//	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnUpdateFileSaveAs(CCmdUI *pCmdUI);
 };
 
 #ifndef _DEBUG  // ImageProcessView.cpp 中的调试版本

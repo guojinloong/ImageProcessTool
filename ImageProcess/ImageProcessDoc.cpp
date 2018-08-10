@@ -10,9 +10,10 @@
 
 #include "ImageProcessDoc.h"
 #include <propkey.h>
-extern Mat srcImg,tempImg,dstImg;
+extern Mat srcImg,tempImg,dstImg,temp[];
 extern CString fileName,extension;
 extern CvvImage image;
+extern int t;	//当前的撤销次数
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -146,24 +147,29 @@ BOOL CImageProcessDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
 	char *pchar = new char[num];
 	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
-	DocImage.Load(pchar);
-	srcImg = DocImage.GetImage();
+	//image.Load(pchar);
+	//srcImg = image.GetImage();
+	srcImg = imread(pchar);
+	srcImg.copyTo(dstImg);
 	srcImg.copyTo(tempImg);
+	t = 0;
+	srcImg.copyTo(temp[t]);
+	TRACE(_T("Back:%d\n"),t);
 	delete []pchar;
 	return TRUE;
 }
 
 
-BOOL CImageProcessDoc::OnSaveDocument(LPCTSTR lpszPathName)
-{
-	// TODO: 在此添加专用代码和/或调用基类
-	
-	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
-	char *pchar = new char[num];
-	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
-	if(!dstImg.data)	dstImg = srcImg.clone();
-	IplImage img = dstImg;
-	image.CopyOf(&img);
-	image.Save(pchar);
-	return CDocument::OnSaveDocument(lpszPathName);
-}
+//BOOL CImageProcessDoc::OnSaveDocument(LPCTSTR lpszPathName)
+//{
+//	// TODO: 在此添加专用代码和/或调用基类
+//	
+//	int num = WideCharToMultiByte(CP_OEMCP,NULL,lpszPathName,-1,NULL,0,NULL,FALSE);
+//	char *pchar = new char[num];
+//	WideCharToMultiByte (CP_OEMCP,NULL,lpszPathName,-1,pchar,num,NULL,FALSE);
+//	if(!dstImg.data)	dstImg = srcImg.clone();
+//	IplImage img = dstImg;
+//	image.CopyOf(&img);
+//	image.Save(pchar);
+//	return CDocument::OnSaveDocument(lpszPathName);
+//}

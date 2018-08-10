@@ -20,7 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -94,8 +94,14 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="F:\back-arrow-7.png" />
+    <None Include="HAS.bmp" />
+    <None Include="HAS~1.bmp" />
     <None Include="ImageProcess.reg" />
     <None Include="ReadMe.txt" />
+    <None Include="res\bitmap2.bmp" />
+    <None Include="res\HAS.bmp" />
+    <None Include="res\HAS.ico" />
     <None Include="res\ImageProcess.ico" />
     <None Include="res\ImageProcess.rc2" />
     <None Include="res\ImageProcessDoc.ico" />
@@ -106,6 +112,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CvvImage.h" />
+    <ClInclude Include="DlgAffineWarp.h" />
+    <ClInclude Include="DlgAffineWarpRotation.h" />
+    <ClInclude Include="DlgEdgeCanny.h" />
+    <ClInclude Include="DlgEdgeLaplacian.h" />
+    <ClInclude Include="DlgEdgeScharr.h" />
+    <ClInclude Include="DlgEdgeSobel.h" />
+    <ClInclude Include="DlgFilter.h" />
+    <ClInclude Include="DlgHoughLines.h" />
+    <ClInclude Include="DlgHoughLinesP.h" />
+    <ClInclude Include="DlgMorphology.h" />
+    <ClInclude Include="DlgPicture.h" />
+    <ClInclude Include="DlgRemap.h" />
+    <ClInclude Include="DlgThresholdAdaptive.h" />
     <ClInclude Include="ImageProcess.h" />
     <ClInclude Include="ImageProcessDoc.h" />
     <ClInclude Include="ImageProcessView.h" />
@@ -113,17 +132,33 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="DlgThreshold.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CvvImage.cpp" />
+    <ClCompile Include="DlgAffineWarp.cpp" />
+    <ClCompile Include="DlgAffineWarpRotation.cpp" />
+    <ClCompile Include="DlgEdgeCanny.cpp" />
+    <ClCompile Include="DlgEdgeLaplacian.cpp" />
+    <ClCompile Include="DlgEdgeScharr.cpp" />
+    <ClCompile Include="DlgEdgeSobel.cpp" />
+    <ClCompile Include="DlgFilter.cpp" />
+    <ClCompile Include="DlgHoughLines.cpp" />
+    <ClCompile Include="DlgHoughLinesP.cpp" />
+    <ClCompile Include="DlgMorphology.cpp" />
+    <ClCompile Include="DlgPicture.cpp" />
+    <ClCompile Include="DlgRemap.cpp" />
+    <ClCompile Include="DlgThresholdAdaptive.cpp" />
     <ClCompile Include="ImageProcess.cpp" />
     <ClCompile Include="ImageProcessDoc.cpp" />
     <ClCompile Include="ImageProcessView.cpp" />
+    <ClCompile Include="left.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DlgThreshold.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ImageProcess.rc" />
